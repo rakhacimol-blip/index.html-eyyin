@@ -4,583 +4,896 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oops! It's a Typo 💗</title>
+<meta name="theme-color" content="#f8dce7">
 
+<title>A Little Apology — Mamah & Inggrid</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+:root {
+  --pink: #bd587e;
+  --deep: #91415f;
+  --soft: #fff8fb;
+  --text: #795064;
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg,#fff0f5,#fbd2e0,#fce4ec);
-    color: #79475b;
-    min-height: 100vh;
-    overflow-x: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: Poppins, sans-serif;
+  color: var(--text);
+  background: linear-gradient(
+    135deg,
+    #fff2f6 0%,
+    #f9dce7 48%,
+    #fcebf1 100%
+  );
 }
 
-#hearts {
-    position: fixed;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 0;
+/* ANIMASI HATI */
+#floaters {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.heart {
-    position: absolute;
-    bottom: -40px;
-    animation: floatUp linear forwards;
-    opacity: .7;
+.floater {
+  position: absolute;
+  bottom: -45px;
+  animation: rise linear forwards;
+  opacity: 0;
 }
 
-@keyframes floatUp {
-    0% { transform: translateY(0) rotate(0); opacity: 0; }
-    20% { opacity: .8; }
-    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+@keyframes rise {
+  15% { opacity: .7; }
+  100% {
+    transform: translateY(-115vh) rotate(330deg);
+    opacity: 0;
+  }
 }
 
-.container {
-    position: relative;
-    z-index: 2;
-    width: min(700px,92%);
-    margin: auto;
-    padding: 75px 0 40px;
-    text-align: center;
+/* HALAMAN UTAMA */
+.page {
+  position: relative;
+  z-index: 1;
+  width: min(760px, 92%);
+  margin: auto;
+  padding: 105px 0 35px;
+  text-align: center;
 }
 
-.badge {
-    display: inline-block;
-    padding: 9px 19px;
-    border: 1px solid #fff;
-    border-radius: 50px;
-    background: #ffffff88;
-    font-size: 11px;
-    letter-spacing: 2px;
+.pill {
+  display: inline-block;
+  padding: 9px 17px;
+  border: 1px solid #fff;
+  border-radius: 99px;
+  background: #ffffff9c;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #986078;
 }
 
 h1 {
-    font-family: 'Playfair Display',serif;
-    font-size: clamp(42px,8vw,68px);
-    color: #b44e76;
-    line-height: 1.2;
-    margin-top: 25px;
+  font: 600 clamp(43px, 9vw, 72px)/1.12 "Playfair Display", serif;
+  color: #a84970;
+  margin: 24px 0 15px;
 }
 
-h1 span {
-    color: #dc83a3;
-    font-style: italic;
+h1 em {
+  color: #d27f9e;
+  font-weight: 500;
 }
 
-.intro {
-    font-size: 13px;
-    line-height: 2;
-    margin-top: 20px;
-    color: #95647a;
+.lead {
+  max-width: 550px;
+  margin: 0 auto;
+  color: #8c6476;
+  font-size: 13px;
+  line-height: 2;
 }
 
-.typo-card {
-    margin: 35px auto;
-    padding: 23px;
-    max-width: 440px;
-    border: 1px solid #ffffff;
-    border-radius: 22px;
-    background: #ffffff85;
-    box-shadow: 0 12px 35px #b44e7618;
+/* KARTU TYPO */
+.typo {
+  max-width: 450px;
+  margin: 32px auto 25px;
+  padding: 22px 18px;
+  border: 1px solid #fff;
+  border-radius: 22px;
+  background: #ffffff9c;
+  box-shadow: 0 12px 35px #a8497015;
 }
 
-.typo-card small {
-    letter-spacing: 2px;
-    color: #b77b91;
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #a7778c;
 }
 
 .wrong {
-    color: #d35c78;
-    text-decoration: line-through;
-    font-size: 19px;
-    margin: 12px 0;
+  margin: 13px 0 7px;
+  color: #c65e79;
+  text-decoration: line-through;
+  font-size: clamp(15px, 4vw, 19px);
 }
 
-.right {
-    color: #479b7d;
-    font-weight: 600;
-    font-size: 19px;
-    animation: pop 1.5s infinite;
+.correct {
+  display: inline-block;
+  color: #428b72;
+  font-size: clamp(16px, 4vw, 20px);
+  font-weight: 600;
+  animation: pulse 1.8s infinite;
 }
 
-@keyframes pop {
-    50% { transform: scale(1.07); }
+@keyframes pulse {
+  50% { transform: scale(1.04); }
 }
 
-.envelope-area {
-    width: 220px;
-    height: 145px;
-    margin: 50px auto 20px;
-    cursor: pointer;
-    position: relative;
-    perspective: 900px;
+/* AMPLOP */
+.envelope-wrap {
+  width: 220px;
+  height: 145px;
+  margin: 48px auto 17px;
+  cursor: pointer;
+  perspective: 900px;
 }
 
 .envelope {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #d87999;
-    border-radius: 8px;
-    box-shadow: 0 15px 35px #a4436740;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 8px;
+  background: #d77e9e;
+  box-shadow: 0 15px 35px #91415f30;
 }
 
-.envelope:before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    border-left: 110px solid transparent;
-    border-right: 110px solid transparent;
-    border-bottom: 85px solid #c35c81;
-    z-index: 3;
+.envelope:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+  border-bottom: 88px solid #bd5c82;
+  z-index: 3;
 }
 
 .flap {
-    position: absolute;
-    top: 0;
-    border-left: 110px solid transparent;
-    border-right: 110px solid transparent;
-    border-top: 85px solid #ef9fba;
-    transform-origin: top;
-    transition: transform .8s;
-    z-index: 4;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+  border-top: 88px solid #edabc1;
+  transform-origin: top;
+  transition: transform .8s;
+  z-index: 4;
 }
 
 .seal {
-    position: absolute;
-    top: 52px;
-    left: 92px;
-    z-index: 5;
-    font-size: 34px;
-    transition: .4s;
+  position: absolute;
+  z-index: 5;
+  top: 53px;
+  left: 91px;
+  font-size: 35px;
+  transition: opacity .4s;
 }
 
 .envelope.open .flap {
-    transform: rotateX(180deg);
+  transform: rotateX(180deg);
 }
 
 .envelope.open .seal {
-    opacity: 0;
+  opacity: 0;
 }
 
-.click {
-    font-size: 12px;
-    animation: blink 1.5s infinite;
+.hint {
+  font-size: 11px;
+  color: #a15e7a;
+  animation: blink 1.6s infinite;
 }
 
 @keyframes blink {
-    50% { opacity: .4; }
+  50% { opacity: .4; }
 }
 
+/* SURAT */
 .letter {
-    display: none;
-    background: #fffafc;
-    border-radius: 25px;
-    padding: 32px 28px;
-    margin: 35px auto;
-    text-align: left;
-    line-height: 2;
-    font-size: 13px;
-    box-shadow: 0 15px 45px #a4436720;
-    animation: appear .9s ease;
+  display: none;
+  margin: 34px auto;
+  padding: clamp(22px, 5vw, 36px);
+  border: 1px solid #fff;
+  border-radius: 25px;
+  background: #fffafd;
+  box-shadow: 0 16px 45px #91415f18;
+  text-align: left;
+  font-size: 13px;
+  line-height: 2;
+  animation: appear .8s ease;
 }
 
 @keyframes appear {
-    from { opacity: 0; transform: translateY(35px); }
-    to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-.letter h2 {
-    font-family: 'Playfair Display',serif;
-    color: #ba557d;
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 25px;
+.letter h2,
+.final h2 {
+  font: 600 29px "Playfair Display", serif;
+  color: #b6537a;
+  text-align: center;
+  margin-bottom: 22px;
 }
 
 .letter p {
-    margin-bottom: 16px;
+  margin: 0 0 15px;
 }
 
 .highlight {
-    color: #bd527a;
-    font-weight: 600;
+  font-weight: 600;
+  color: #b34e76;
 }
 
-.divider {
-    height: 1px;
-    background: #f1d5df;
-    margin: 25px 0;
+.rule {
+  height: 1px;
+  background: #f0d8e1;
+  margin: 24px 0;
 }
 
 .prayer {
-    background: #fff0f5;
-    border-radius: 17px;
-    padding: 20px;
-    text-align: center;
-    color: #a34c70;
-    margin: 20px 0;
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 18px;
+  background: #fff0f5;
+  text-align: center;
+  color: #99516f;
 }
 
-.prayer .flower {
-    font-size: 35px;
+.prayer .flowers {
+  font-size: 30px;
+  margin-bottom: 5px;
 }
 
 .signature {
-    text-align: right;
-    font-family: 'Playfair Display',serif;
-    font-size: 19px;
-    color: #ba557d;
-    margin-top: 25px;
+  text-align: right;
+  margin-top: 25px;
+  font: italic 19px "Playfair Display", serif;
+  color: #b6537a;
 }
 
+/* TOMBOL */
 button {
-    border: none;
-    padding: 14px 25px;
-    border-radius: 50px;
-    background: #c35f85;
-    color: white;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 12px;
-    margin-top: 20px;
-    box-shadow: 0 8px 20px #c35f8540;
-    transition: .3s;
+  border: 0;
+  border-radius: 99px;
+  padding: 13px 23px;
+  background: #bd587e;
+  color: white;
+  font: 500 12px Poppins, sans-serif;
+  cursor: pointer;
+  box-shadow: 0 8px 20px #bd587e38;
+  transition: transform .2s, background .2s;
 }
 
 button:hover {
-    transform: translateY(-4px);
-    background: #a44367;
+  transform: translateY(-3px);
+  background: #984365;
 }
 
+/* PESAN TERAKHIR */
 .final {
-    display: none;
-    margin-top: 25px;
-    padding: 25px;
-    text-align: center;
-    background: #fff0f5;
-    border-radius: 18px;
-    animation: appear .8s ease;
+  display: none;
+  margin-top: 24px;
+  padding: 23px;
+  border-radius: 18px;
+  background: #fff0f5;
+  text-align: center;
+  animation: appear .7s ease;
 }
 
-.final h2 {
-    margin-bottom: 12px;
+.final p {
+  line-height: 2;
 }
 
-footer {
-    margin-top: 60px;
-    font-size: 11px;
-    color: #a36c81;
-    line-height: 2;
+/* PANEL MUSIK */
+.music-panel {
+  position: fixed;
+  right: 12px;
+  top: 12px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: calc(100vw - 24px);
 }
 
 .music {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    z-index: 10;
-    padding: 10px 17px;
-    margin: 0;
-    background: #ffffffc9;
-    color: #a44367;
-    border: 1px solid white;
+  position: static;
+  padding: 10px 14px;
+  background: #ffffffed;
+  color: #9e4d6d;
+  border: 1px solid white;
+  box-shadow: 0 5px 18px #91415f18;
 }
 
-@media(max-width:500px) {
-    .container { padding-top: 80px; }
-    .letter { padding: 25px 20px; }
+.choose-music {
+  background: #bd587e;
+  color: white;
+}
+
+.music-status {
+  width: 100%;
+  text-align: right;
+  padding-right: 5px;
+  font-size: 9px;
+  color: #986078;
+  text-shadow: 0 1px 4px white;
+}
+
+footer {
+  margin-top: 55px;
+  font-size: 10px;
+  line-height: 2;
+  color: #a36c81;
+}
+
+/* TAMPILAN HP */
+@media(max-width: 480px) {
+  .page {
+    padding-top: 110px;
+  }
+
+  .letter {
+    font-size: 12px;
+  }
+
+  .typo {
+    padding: 19px 13px;
+  }
+
+  .music-panel {
+    right: 8px;
+    top: 8px;
+    gap: 5px;
+  }
+
+  .music {
+    padding: 9px 11px;
+    font-size: 10px;
+  }
+
+  .music-status {
+    font-size: 8px;
+  }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div id="hearts"></div>
+<div id="floaters" aria-hidden="true"></div>
 
-<audio id="music" loop>
-    <!-- Masukkan file musik MP3 di sini jika tersedia -->
-    <source src="music.mp3" type="audio/mpeg">
+<!-- AUDIO WEBSITE -->
+<audio id="music" loop preload="none">
+  <source src="./music.mp3" type="audio/mpeg">
 </audio>
 
-<button class="music" onclick="toggleMusic()" id="musicBtn">
-    🎵 Music
-</button>
+<!-- TOMBOL MUSIK -->
+<div class="music-panel">
 
-<div class="container">
+  <button
+    class="music"
+    id="musicBtn"
+    type="button"
+    onclick="toggleMusic()">
+    ♫ Play Music
+  </button>
 
-    <div class="badge">A LITTLE APOLOGY LETTER 💌</div>
+  <button
+    class="music choose-music"
+    type="button"
+    onclick="document.getElementById('musicFile').click()">
+    ＋ Pilih MP3
+  </button>
 
-    <h1>Oops!<br><span>It's a Typo.</span></h1>
+  <input
+    id="musicFile"
+    type="file"
+    accept="audio/*,.mp3,.wav,.ogg,.m4a"
+    hidden>
 
-    <p class="intro">
-        Sometimes our fingers type faster than our brains think. 🥲
-        <br>
-        And apparently... mine did something unexpected.
-    </p>
-
-    <div class="typo-card">
-        <small>THE UNFORTUNATE TYPO 😭</small>
-
-        <div class="wrong">
-            "Dijatuhkan dari marabahaya"
-        </div>
-
-        <div style="font-size:12px;margin:10px 0">
-            Seharusnya yang benar adalah...
-        </div>
-
-        <div class="right">
-            "Dijauhkan dari marabahaya" ❤️
-        </div>
-    </div>
-
-    <p class="intro">
-        Okay, jokes aside. Ada pesan yang benar-benar ingin
-        aku sampaikan dari hati.
-    </p>
-
-    <div class="envelope-area" onclick="openLetter()">
-        <div class="envelope" id="envelope">
-            <div class="flap"></div>
-            <div class="seal">💗</div>
-        </div>
-    </div>
-
-    <p class="click" id="click">
-        ✨ Klik amplop untuk membuka surat ✨
-    </p>
-
-    <div class="letter" id="letter">
-
-        <h2>Dear Mamah Inggrid & Inggrid 🤍</h2>
-
-        <p>
-            Sebelumnya, aku ingin meminta maaf atas typo
-            yang tidak disengaja tadi. Jujur, setelah sadar
-            salah mengetik, aku sendiri langsung merasa
-            <span class="highlight">"Aduh, kok bisa begitu?"</span> 😭
-        </p>
-
-        <p>
-            Padahal maksud sebenarnya sangat baik.
-            Aku ingin mendoakan Mamah agar segera diberikan
-            kesembuhan, penyakitnya diangkat, dan selalu
-            dijauhkan dari segala marabahaya. dan memang saat posisi
-            ketik tersebut memang tidak pas posisi nya
-        </p>
-
-        <p>
-            Tapi ternyata satu kata yang salah ketik
-            bisa mengubah arti kalimat sejauh itu.
-            Sekali lagi, itu benar-benar murni typo,
-            bukan maksud atau doa yang sebenarnya ingin
-            aku sampaikan.
-        </p>
-
-        <div class="divider"></div>
-
-        <p>
-            <span class="highlight">Untuk Mamah Inggrid 🌷</span>
-        </p>
-
-        <p>
-            Semoga Mamah eyyin segera diberikan kesembuhan,
-            diangkat segala penyakitnya, diberikan kesehatan,
-            kekuatan, serta selalu berada dalam perlindungan Tuhan.
-            Semoga setiap harinya membawa kabar baik dan
-            keadaan Mamah semakin membaik.
-        </p>
-
-        <div class="prayer">
-            <div class="flower">🌸🤍🌸</div>
-            <p>
-                Semoga lekas sembuh, Mamah eyyin.
-                <br>
-                Doa terbaik selalu menyertai.
-            </p>
-        </div>
-
-        <p>
-            <span class="highlight">Untuk Inggrid 💗</span>
-        </p>
-
-        <p>
-            Maaf ya kalau typo-ku tadi bikin kamu kaget,
-            bingung, atau bahkan kamu jadi sedih
-            Percayalah, niatku sebenarnya sedang mendoakan
-            hal yang baik untuk Mamah kamu.
-        </p>
-
-        <p>
-            Aku harap kamu tidak salah paham.
-            Tidak ada maksud buruk sedikit pun di balik
-            kalimat yang salah ketik itu.
-        </p>
-
-        <div class="divider"></div>
-
-        <p>
-            Sekali lagi, maaf ya atas kesalahan nya sayang
-            yang mungkin terdengar cukup kaget sayang. sekali lagi
-            aka minta maaf ya sayang segala kesalahan dan next time
-            akan lebih diperhatikan tiap kata sayang
-           
-        </p>
-
-        <p>
-            Semoga Mamah segera pulih, Inggrid selalu diberikan
-            kebahagiaan, dan keluarga selalu diberikan kesehatan.
-        </p>
-
-        <div class="signature">
-            With sincere apologies,<br>
-            Someone who lost to autocorrect. 🤍
-        </div>
-
-        <center>
-            <button onclick="showFinal()">
-                One Last Message 💌
-            </button>
-        </center>
-
-        <div class="final" id="final">
-            <h2>One Last Thing... ❤️</h2>
-
-            <p>
-                Typo-nya boleh salah,
-                tapi doanya tetap yang terbaik.
-                <br><br>
-                <b>
-                    Semoga penyakit Mamah kamu diangkat
-                    dan selalu dijauhkan dari segala marabahaya.
-                </b>
-                <br><br>
-                Get well soon, Mamah eyyin! 🌷
-                <br>
-                Sending love & prayers. 🤍
-            </p>
-        </div>
-
-    </div>
-
-    <footer>
-        Made with sincerity, a little panic & lots of love ♡
-        <br>
-        This time, no more typo. Hopefully. 😭
-    </footer>
+  <span class="music-status" id="musicStatus">
+    Lagu: music.mp3
+  </span>
 
 </div>
 
+<!-- KONTEN UTAMA -->
+<main class="page">
+
+  <div class="pill">
+    A LITTLE APOLOGY LETTER 💌
+  </div>
+
+  <h1>
+    Oops!<br>
+    <em>It's a Typo.</em>
+  </h1>
+
+  <p class="lead">
+    Sometimes our fingers type faster than our brains think. 🥲
+    <br>
+    And apparently... mine did something unexpected.
+  </p>
+
+  <!-- KARTU KESALAHAN TYPO -->
+  <section class="typo">
+
+    <div class="eyebrow">
+      THE UNFORTUNATE TYPO 😭
+    </div>
+
+    <div class="wrong">
+      "Dijatuhkan dari marabahaya"
+    </div>
+
+    <div style="font-size:11px;margin:8px 0">
+      Seharusnya yang benar adalah...
+    </div>
+
+    <div class="correct">
+      "Dijauhkan dari marabahaya" ❤️
+    </div>
+
+  </section>
+
+  <p class="lead">
+    Okay, jokes aside. Ada pesan yang benar-benar ingin aku
+    sampaikan dari hati.
+  </p>
+
+  <!-- AMPLOP -->
+  <div
+    class="envelope-wrap"
+    role="button"
+    tabindex="0"
+    aria-label="Buka surat"
+    onclick="openLetter()"
+    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLetter()}">
+
+    <div class="envelope" id="envelope">
+      <div class="flap"></div>
+      <div class="seal">💗</div>
+    </div>
+
+  </div>
+
+  <p class="hint" id="hint">
+    ✨ Klik amplop untuk membuka surat ✨
+  </p>
+
+  <!-- ISI SURAT -->
+  <article class="letter" id="letter">
+
+    <h2>
+      Dear Mamah Inggrid & Inggrid 🤍
+    </h2>
+
+    <p>
+      Sebelumnya, aku ingin meminta maaf atas typo yang
+      tidak disengaja tadi. Jujur, setelah sadar salah mengetik,
+      aku sendiri langsung merasa
+      <span class="highlight">
+        "Aduh, kok bisa begitu?"
+      </span> 😭
+    </p>
+
+    <p>
+      Padahal maksud sebenarnya sangat baik. Aku ingin
+      mendoakan Mamah agar segera diberikan kesembuhan,
+      penyakitnya diangkat, dan selalu
+      <span class="highlight">
+        dijauhkan dari segala marabahaya
+      </span>.
+    </p>
+
+    <p>
+      Tapi ternyata satu kata yang salah ketik bisa mengubah
+      arti kalimat sejauh itu. Sekali lagi, itu benar-benar
+      murni typo, bukan maksud atau doa yang sebenarnya
+      ingin aku sampaikan.
+    </p>
+
+    <div class="rule"></div>
+
+    <p>
+      <span class="highlight">
+        Untuk Mamah Inggrid 🌷
+      </span>
+    </p>
+
+    <p>
+      Semoga Mamah segera diberikan kesembuhan, diangkat
+      segala penyakitnya, diberikan kesehatan, kekuatan,
+      serta selalu berada dalam perlindungan Tuhan.
+      Semoga setiap harinya membawa kabar baik dan
+      keadaan Mamah semakin membaik.
+    </p>
+
+    <div class="prayer">
+      <div class="flowers">🌸🤍🌸</div>
+
+      <strong>
+        Semoga lekas sembuh, Mamah.
+      </strong>
+
+      <br>
+
+      Doa terbaik selalu menyertai.
+    </div>
+
+    <p>
+      <span class="highlight">
+        Untuk Inggrid 💗
+      </span>
+    </p>
+
+    <p>
+      Maaf ya kalau typo-ku tadi bikin kamu kaget,
+      bingung, atau bahkan ketawa sendiri. Percayalah,
+      niatku sebenarnya sedang mendoakan hal yang baik
+      untuk Mamah.
+    </p>
+
+    <p>
+      Aku harap kamu tidak salah paham. Tidak ada maksud
+      buruk sedikit pun di balik kalimat yang salah ketik itu.
+    </p>
+
+    <div class="rule"></div>
+
+    <p>
+      Sekali lagi, maaf ya atas kesalahan aka terkait typo dan lain sebagainya.
+        oiya semangat yaa sayangkuu cintaku untuk progress lanjut yaitu peneletian
+        dan skripsi semoga semua di lancarkan dan di mudahkan aamiiin doaku selalu untuk kamu
+        yang terbaik serta aka juga doain mamah kamu yang sedang sakit semoga disembuhkan dan
+        bisa beraktivitas normal kembali.
+    </p>
+
+    <p>
+      Semoga Mamah segera pulih, Inggrid selalu diberikan
+      kebahagiaan, dan keluarga selalu diberikan kesehatan.
+    </p>
+
+    <div class="signature">
+      With sincere apologies,
+      <br>
+      Someone who lost to autocorrect. 🤍
+    </div>
+
+    <div style="text-align:center;margin-top:25px">
+
+      <button type="button" onclick="showFinal()">
+        One Last Message 💌
+      </button>
+
+    </div>
+
+    <!-- PESAN PENUTUP -->
+    <section class="final" id="final">
+
+      <h2>
+        One Last Thing... ❤️
+      </h2>
+
+      <p>
+        Typo-nya boleh salah,
+        <br>
+        tapi doanya tetap yang terbaik.
+        <br><br>
+
+        <strong>
+          Semoga penyakit Mamah kamu diangkat dan selalu
+          dijauhkan dari segala marabahaya.
+        </strong>
+
+        <br><br>
+
+        Get well soon, Mamah eyyin! 🌷
+        <br>
+        Sending love & prayers. 🤍
+      </p>
+
+    </section>
+
+  </article>
+
+  <footer>
+    Made with sincerity, a little panic & lots of love ♡
+    <br>
+    This time, no more typo. Hopefully. 😭
+  </footer>
+
+</main>
+
 <script>
 
-// OPEN LETTER
+/* =================================
+   FITUR MEMBUKA SURAT
+================================= */
+
+let opened = false;
+
 function openLetter() {
-    document.getElementById("envelope").classList.add("open");
 
-    document.getElementById("click").innerText =
-        "💗 A message from the heart...";
+  if (opened) return;
 
-    setTimeout(() => {
-        const letter = document.getElementById("letter");
-        letter.style.display = "block";
+  opened = true;
 
-        letter.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-    }, 700);
-}
+  document
+    .getElementById('envelope')
+    .classList.add('open');
 
-// FINAL MESSAGE + CONFETTI
-function showFinal() {
-    const final = document.getElementById("final");
+  document
+    .getElementById('hint')
+    .textContent = '💗 A message from the heart...';
 
-    final.style.display = "block";
+  setTimeout(() => {
 
-    final.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
+    const letter = document.getElementById('letter');
+
+    letter.style.display = 'block';
+
+    letter.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
     });
 
-    confetti();
+  }, 650);
+
 }
 
-// CONFETTI
-function confetti() {
-    const emojis = ["❤️","💕","🌸","✨","💗","🌷"];
 
-    for(let i = 0; i < 45; i++) {
-        const el = document.createElement("div");
+/* =================================
+   FITUR PESAN TERAKHIR
+================================= */
 
-        el.innerText =
-            emojis[Math.floor(Math.random()*emojis.length)];
+function showFinal() {
 
-        el.style.position = "fixed";
-        el.style.left = Math.random()*100 + "vw";
-        el.style.top = "-30px";
-        el.style.fontSize = "22px";
-        el.style.zIndex = "100";
-        el.style.pointerEvents = "none";
-        el.style.transition = "transform 3s, opacity 3s";
+  const final = document.getElementById('final');
 
-        document.body.appendChild(el);
+  final.style.display = 'block';
 
-        setTimeout(() => {
-            el.style.transform =
-                `translateY(110vh) rotate(${Math.random()*720}deg)`;
-            el.style.opacity = "0";
-        }, 50);
+  makeConfetti();
 
-        setTimeout(() => el.remove(), 3200);
+  final.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+
+}
+
+
+/* =================================
+   ANIMASI CONFETTI
+================================= */
+
+function makeConfetti() {
+
+  const symbols = [
+    '❤️', '💕', '🌸', '✨', '💗', '🌷'
+  ];
+
+  for (let i = 0; i < 40; i++) {
+
+    const el = document.createElement('span');
+
+    el.textContent =
+      symbols[Math.floor(Math.random() * symbols.length)];
+
+    el.style.cssText = `
+      position: fixed;
+      left: ${Math.random() * 100}vw;
+      top: -35px;
+      font-size: 22px;
+      z-index: 20;
+      pointer-events: none;
+      transition: transform 3s ease, opacity 3s ease;
+    `;
+
+    document.body.appendChild(el);
+
+    requestAnimationFrame(() => {
+
+      setTimeout(() => {
+
+        el.style.transform =
+          `translateY(110vh) rotate(${Math.random() * 720}deg)`;
+
+        el.style.opacity = '0';
+
+      }, 30);
+
+    });
+
+    setTimeout(() => el.remove(), 3200);
+
+  }
+
+}
+
+
+/* =================================
+   FITUR MUSIK PLAY / PAUSE
+================================= */
+
+const audio = document.getElementById('music');
+
+const musicBtn = document.getElementById('musicBtn');
+
+const musicStatus = document.getElementById('musicStatus');
+
+
+async function toggleMusic() {
+
+  if (audio.paused) {
+
+    try {
+
+      await audio.play();
+
+      musicBtn.textContent = 'Ⅱ Pause';
+
+    } catch (error) {
+
+      alert(
+        'Musik belum ditemukan. Upload file music.mp3 ' +
+        'ke folder yang sama dengan index.html, atau ' +
+        'gunakan tombol Pilih MP3.'
+      );
+
     }
+
+  } else {
+
+    audio.pause();
+
+    musicBtn.textContent = '♫ Play Music';
+
+  }
+
 }
 
-// MUSIC
-function toggleMusic() {
-    const music = document.getElementById("music");
-    const btn = document.getElementById("musicBtn");
 
-    if(music.paused) {
-        music.play().then(() => {
-            btn.innerText = "⏸ Music";
-        }).catch(() => {
-            alert("Pastikan file music.mp3 sudah tersedia.");
-        });
-    } else {
-        music.pause();
-        btn.innerText = "🎵 Music";
-    }
-}
+/* =================================
+   PILIH MUSIK DARI LAPTOP
+================================= */
 
-// FLOATING HEARTS
+let selectedMusicUrl = null;
+
+const musicFile = document.getElementById('musicFile');
+
+musicFile.addEventListener('change', async function(event) {
+
+  const file = event.target.files[0];
+
+  if (!file) return;
+
+  // Hapus URL musik pilihan sebelumnya
+  if (selectedMusicUrl) {
+
+    URL.revokeObjectURL(selectedMusicUrl);
+
+  }
+
+  // Membuat sumber musik dari file lokal
+  selectedMusicUrl = URL.createObjectURL(file);
+
+  audio.src = selectedMusicUrl;
+
+  audio.load();
+
+  // Menampilkan nama file musik
+  musicStatus.textContent = 'Lagu: ' + file.name;
+
+  try {
+
+    // Langsung mencoba memutar musik
+    await audio.play();
+
+    musicBtn.textContent = 'Ⅱ Pause';
+
+  } catch (error) {
+
+    musicBtn.textContent = '♫ Play Music';
+
+    alert(
+      'Musik sudah dipilih! Tekan tombol Play Music ' +
+      'untuk mulai memutarnya.'
+    );
+
+  }
+
+});
+
+
+/* =================================
+   STATUS SAAT MUSIK SELESAI
+================================= */
+
+audio.addEventListener('ended', function() {
+
+  musicBtn.textContent = '♫ Play Music';
+
+});
+
+
+audio.addEventListener('error', function() {
+
+  // Tidak menampilkan peringatan otomatis
+  // jika file music.mp3 belum tersedia.
+
+});
+
+
+/* =================================
+   ANIMASI HATI MELAYANG
+================================= */
+
+const holder = document.getElementById('floaters');
+
 setInterval(() => {
-    const heart = document.createElement("div");
 
-    heart.className = "heart";
-    heart.innerText =
-        ["❤️","💕","💗","🌸","♡"][
-            Math.floor(Math.random()*5)
-        ];
+  const item = document.createElement('span');
 
-    heart.style.left = Math.random()*100 + "vw";
-    heart.style.fontSize =
-        (15 + Math.random()*22) + "px";
+  item.className = 'floater';
 
-    heart.style.animationDuration =
-        (7 + Math.random()*6) + "s";
+  item.textContent = [
+    '❤️', '💕', '💗', '🌸', '♡'
+  ][Math.floor(Math.random() * 5)];
 
-    document.getElementById("hearts").appendChild(heart);
+  item.style.left = Math.random() * 100 + 'vw';
 
-    setTimeout(() => heart.remove(), 14000);
+  item.style.fontSize =
+    (15 + Math.random() * 20) + 'px';
+
+  item.style.animationDuration =
+    (7 + Math.random() * 6) + 's';
+
+  holder.appendChild(item);
+
+  setTimeout(() => item.remove(), 14000);
 
 }, 650);
 
