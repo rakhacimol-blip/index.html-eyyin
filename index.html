@@ -1,0 +1,587 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oops! It's a Typo 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg,#fff0f5,#fbd2e0,#fce4ec);
+    color: #79475b;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+#hearts {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.heart {
+    position: absolute;
+    bottom: -40px;
+    animation: floatUp linear forwards;
+    opacity: .7;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0); opacity: 0; }
+    20% { opacity: .8; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    width: min(700px,92%);
+    margin: auto;
+    padding: 75px 0 40px;
+    text-align: center;
+}
+
+.badge {
+    display: inline-block;
+    padding: 9px 19px;
+    border: 1px solid #fff;
+    border-radius: 50px;
+    background: #ffffff88;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+h1 {
+    font-family: 'Playfair Display',serif;
+    font-size: clamp(42px,8vw,68px);
+    color: #b44e76;
+    line-height: 1.2;
+    margin-top: 25px;
+}
+
+h1 span {
+    color: #dc83a3;
+    font-style: italic;
+}
+
+.intro {
+    font-size: 13px;
+    line-height: 2;
+    margin-top: 20px;
+    color: #95647a;
+}
+
+.typo-card {
+    margin: 35px auto;
+    padding: 23px;
+    max-width: 440px;
+    border: 1px solid #ffffff;
+    border-radius: 22px;
+    background: #ffffff85;
+    box-shadow: 0 12px 35px #b44e7618;
+}
+
+.typo-card small {
+    letter-spacing: 2px;
+    color: #b77b91;
+}
+
+.wrong {
+    color: #d35c78;
+    text-decoration: line-through;
+    font-size: 19px;
+    margin: 12px 0;
+}
+
+.right {
+    color: #479b7d;
+    font-weight: 600;
+    font-size: 19px;
+    animation: pop 1.5s infinite;
+}
+
+@keyframes pop {
+    50% { transform: scale(1.07); }
+}
+
+.envelope-area {
+    width: 220px;
+    height: 145px;
+    margin: 50px auto 20px;
+    cursor: pointer;
+    position: relative;
+    perspective: 900px;
+}
+
+.envelope {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #d87999;
+    border-radius: 8px;
+    box-shadow: 0 15px 35px #a4436740;
+}
+
+.envelope:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    border-left: 110px solid transparent;
+    border-right: 110px solid transparent;
+    border-bottom: 85px solid #c35c81;
+    z-index: 3;
+}
+
+.flap {
+    position: absolute;
+    top: 0;
+    border-left: 110px solid transparent;
+    border-right: 110px solid transparent;
+    border-top: 85px solid #ef9fba;
+    transform-origin: top;
+    transition: transform .8s;
+    z-index: 4;
+}
+
+.seal {
+    position: absolute;
+    top: 52px;
+    left: 92px;
+    z-index: 5;
+    font-size: 34px;
+    transition: .4s;
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+}
+
+.envelope.open .seal {
+    opacity: 0;
+}
+
+.click {
+    font-size: 12px;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: .4; }
+}
+
+.letter {
+    display: none;
+    background: #fffafc;
+    border-radius: 25px;
+    padding: 32px 28px;
+    margin: 35px auto;
+    text-align: left;
+    line-height: 2;
+    font-size: 13px;
+    box-shadow: 0 15px 45px #a4436720;
+    animation: appear .9s ease;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(35px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.letter h2 {
+    font-family: 'Playfair Display',serif;
+    color: #ba557d;
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+.letter p {
+    margin-bottom: 16px;
+}
+
+.highlight {
+    color: #bd527a;
+    font-weight: 600;
+}
+
+.divider {
+    height: 1px;
+    background: #f1d5df;
+    margin: 25px 0;
+}
+
+.prayer {
+    background: #fff0f5;
+    border-radius: 17px;
+    padding: 20px;
+    text-align: center;
+    color: #a34c70;
+    margin: 20px 0;
+}
+
+.prayer .flower {
+    font-size: 35px;
+}
+
+.signature {
+    text-align: right;
+    font-family: 'Playfair Display',serif;
+    font-size: 19px;
+    color: #ba557d;
+    margin-top: 25px;
+}
+
+button {
+    border: none;
+    padding: 14px 25px;
+    border-radius: 50px;
+    background: #c35f85;
+    color: white;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+    margin-top: 20px;
+    box-shadow: 0 8px 20px #c35f8540;
+    transition: .3s;
+}
+
+button:hover {
+    transform: translateY(-4px);
+    background: #a44367;
+}
+
+.final {
+    display: none;
+    margin-top: 25px;
+    padding: 25px;
+    text-align: center;
+    background: #fff0f5;
+    border-radius: 18px;
+    animation: appear .8s ease;
+}
+
+.final h2 {
+    margin-bottom: 12px;
+}
+
+footer {
+    margin-top: 60px;
+    font-size: 11px;
+    color: #a36c81;
+    line-height: 2;
+}
+
+.music {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+    padding: 10px 17px;
+    margin: 0;
+    background: #ffffffc9;
+    color: #a44367;
+    border: 1px solid white;
+}
+
+@media(max-width:500px) {
+    .container { padding-top: 80px; }
+    .letter { padding: 25px 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="hearts"></div>
+
+<audio id="music" loop>
+    <!-- Masukkan file musik MP3 di sini jika tersedia -->
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music" onclick="toggleMusic()" id="musicBtn">
+    🎵 Music
+</button>
+
+<div class="container">
+
+    <div class="badge">A LITTLE APOLOGY LETTER 💌</div>
+
+    <h1>Oops!<br><span>It's a Typo.</span></h1>
+
+    <p class="intro">
+        Sometimes our fingers type faster than our brains think. 🥲
+        <br>
+        And apparently... mine did something unexpected.
+    </p>
+
+    <div class="typo-card">
+        <small>THE UNFORTUNATE TYPO 😭</small>
+
+        <div class="wrong">
+            "Dijatuhkan dari marabahaya"
+        </div>
+
+        <div style="font-size:12px;margin:10px 0">
+            Seharusnya yang benar adalah...
+        </div>
+
+        <div class="right">
+            "Dijauhkan dari marabahaya" ❤️
+        </div>
+    </div>
+
+    <p class="intro">
+        Okay, jokes aside. Ada pesan yang benar-benar ingin
+        aku sampaikan dari hati.
+    </p>
+
+    <div class="envelope-area" onclick="openLetter()">
+        <div class="envelope" id="envelope">
+            <div class="flap"></div>
+            <div class="seal">💗</div>
+        </div>
+    </div>
+
+    <p class="click" id="click">
+        ✨ Klik amplop untuk membuka surat ✨
+    </p>
+
+    <div class="letter" id="letter">
+
+        <h2>Dear Mamah Inggrid & Inggrid 🤍</h2>
+
+        <p>
+            Sebelumnya, aku ingin meminta maaf atas typo
+            yang tidak disengaja tadi. Jujur, setelah sadar
+            salah mengetik, aku sendiri langsung merasa
+            <span class="highlight">"Aduh, kok bisa begitu?"</span> 😭
+        </p>
+
+        <p>
+            Padahal maksud sebenarnya sangat baik.
+            Aku ingin mendoakan Mamah agar segera diberikan
+            kesembuhan, penyakitnya diangkat, dan selalu
+            dijauhkan dari segala marabahaya.
+        </p>
+
+        <p>
+            Tapi ternyata satu kata yang salah ketik
+            bisa mengubah arti kalimat sejauh itu.
+            Sekali lagi, itu benar-benar murni typo,
+            bukan maksud atau doa yang sebenarnya ingin
+            aku sampaikan.
+        </p>
+
+        <div class="divider"></div>
+
+        <p>
+            <span class="highlight">Untuk Mamah Inggrid 🌷</span>
+        </p>
+
+        <p>
+            Semoga Mamah segera diberikan kesembuhan,
+            diangkat segala penyakitnya, diberikan kesehatan,
+            kekuatan, serta selalu berada dalam perlindungan Tuhan.
+            Semoga setiap harinya membawa kabar baik dan
+            keadaan Mamah semakin membaik.
+        </p>
+
+        <div class="prayer">
+            <div class="flower">🌸🤍🌸</div>
+            <p>
+                Semoga lekas sembuh, Mamah.
+                <br>
+                Doa terbaik selalu menyertai.
+            </p>
+        </div>
+
+        <p>
+            <span class="highlight">Untuk Inggrid 💗</span>
+        </p>
+
+        <p>
+            Maaf ya kalau typo-ku tadi bikin kamu kaget,
+            bingung, atau bahkan ketawa sendiri.
+            Percayalah, niatku sebenarnya sedang mendoakan
+            hal yang baik untuk Mamah.
+        </p>
+
+        <p>
+            Aku harap kamu tidak salah paham.
+            Tidak ada maksud buruk sedikit pun di balik
+            kalimat yang salah ketik itu.
+        </p>
+
+        <div class="divider"></div>
+
+        <p>
+            Sekali lagi, maaf ya atas kesalahan kecil
+            yang mungkin terdengar cukup absurd ini.
+            Ternyata keyboard juga bisa punya selera humor sendiri. 🥲
+        </p>
+
+        <p>
+            Semoga Mamah segera pulih, Inggrid selalu diberikan
+            kebahagiaan, dan keluarga selalu diberikan kesehatan.
+        </p>
+
+        <div class="signature">
+            With sincere apologies,<br>
+            Someone who lost to autocorrect. 🤍
+        </div>
+
+        <center>
+            <button onclick="showFinal()">
+                One Last Message 💌
+            </button>
+        </center>
+
+        <div class="final" id="final">
+            <h2>One Last Thing... ❤️</h2>
+
+            <p>
+                Typo-nya boleh salah,
+                tapi doanya tetap yang terbaik.
+                <br><br>
+                <b>
+                    Semoga penyakit Mamah diangkat
+                    dan selalu dijauhkan dari segala marabahaya.
+                </b>
+                <br><br>
+                Get well soon, Mamah! 🌷
+                <br>
+                Sending love & prayers. 🤍
+            </p>
+        </div>
+
+    </div>
+
+    <footer>
+        Made with sincerity, a little panic & lots of love ♡
+        <br>
+        This time, no more typo. Hopefully. 😭
+    </footer>
+
+</div>
+
+<script>
+
+// OPEN LETTER
+function openLetter() {
+    document.getElementById("envelope").classList.add("open");
+
+    document.getElementById("click").innerText =
+        "💗 A message from the heart...";
+
+    setTimeout(() => {
+        const letter = document.getElementById("letter");
+        letter.style.display = "block";
+
+        letter.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }, 700);
+}
+
+// FINAL MESSAGE + CONFETTI
+function showFinal() {
+    const final = document.getElementById("final");
+
+    final.style.display = "block";
+
+    final.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+    confetti();
+}
+
+// CONFETTI
+function confetti() {
+    const emojis = ["❤️","💕","🌸","✨","💗","🌷"];
+
+    for(let i = 0; i < 45; i++) {
+        const el = document.createElement("div");
+
+        el.innerText =
+            emojis[Math.floor(Math.random()*emojis.length)];
+
+        el.style.position = "fixed";
+        el.style.left = Math.random()*100 + "vw";
+        el.style.top = "-30px";
+        el.style.fontSize = "22px";
+        el.style.zIndex = "100";
+        el.style.pointerEvents = "none";
+        el.style.transition = "transform 3s, opacity 3s";
+
+        document.body.appendChild(el);
+
+        setTimeout(() => {
+            el.style.transform =
+                `translateY(110vh) rotate(${Math.random()*720}deg)`;
+            el.style.opacity = "0";
+        }, 50);
+
+        setTimeout(() => el.remove(), 3200);
+    }
+}
+
+// MUSIC
+function toggleMusic() {
+    const music = document.getElementById("music");
+    const btn = document.getElementById("musicBtn");
+
+    if(music.paused) {
+        music.play().then(() => {
+            btn.innerText = "⏸ Music";
+        }).catch(() => {
+            alert("Pastikan file music.mp3 sudah tersedia.");
+        });
+    } else {
+        music.pause();
+        btn.innerText = "🎵 Music";
+    }
+}
+
+// FLOATING HEARTS
+setInterval(() => {
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+    heart.innerText =
+        ["❤️","💕","💗","🌸","♡"][
+            Math.floor(Math.random()*5)
+        ];
+
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize =
+        (15 + Math.random()*22) + "px";
+
+    heart.style.animationDuration =
+        (7 + Math.random()*6) + "s";
+
+    document.getElementById("hearts").appendChild(heart);
+
+    setTimeout(() => heart.remove(), 14000);
+
+}, 650);
+
+</script>
+
+</body>
+</html>
